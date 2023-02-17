@@ -58,6 +58,18 @@ export class Matriz extends Array<Array<number>>{
         return new Matriz(...arr);
     }
 
+    // el metodo inversa() toma una matriz extendida y regresa la matriz inversa, asume que ya esta resuelta
+    inversa() {
+        if (this.tipo !== 1) throw new Error('La matriz debe ser de tamaño m x 2m');
+
+        const det = this[0][0];
+        const arr = new Array();
+        for (let i = 0; i < this.m; i++) {
+            arr.push(this[i].slice(this.n / 2).map(element => element / det));
+        }
+        return new Matriz(...arr);
+    }
+
     static convertirAEnteros(input: Array<Array<number>>) {
         let divisor = 1;
         const arr = new Array();
